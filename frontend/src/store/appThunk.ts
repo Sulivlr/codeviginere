@@ -1,15 +1,19 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import axiosApi from '../app/axiosApi';
-import {Msg} from '../types';
+import axiosApi from '../axiosApi';
+import {DecodedMessage, EncodedMessage, Msg} from '../types';
 
-export const encodeMessage = createAsyncThunk<void, Msg>(
+export const encodeMessage = createAsyncThunk<EncodedMessage, Msg>(
   'encode/message',
   async (apiEncode) => {
-    await axiosApi.post(`/encode`, apiEncode);
-  });
+    const {data: message} = await axiosApi.post(`/encode`, apiEncode);
+    return message;
+  }
+);
 
-export const decodeMessage = createAsyncThunk<void, Msg>(
+export const decodeMessage = createAsyncThunk<DecodedMessage, Msg>(
   'decode/message',
   async (apiDecode) => {
-    await axiosApi.post('/decode', apiDecode);
-  });
+    const {data: message} = await axiosApi.post(`/decode`, apiDecode);
+    return message;
+  }
+);
