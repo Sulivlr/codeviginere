@@ -1,8 +1,9 @@
+import CodeForm from './components/CodeForm';
 
 const App = () => {
   return (
     <>
-      <h1>Privet</h1>
+     <CodeForm/>
     </>
   );
 };
